@@ -26,6 +26,10 @@ const [otherMusic, setOtherMusic] = useState("")
 
 const [dailyPeriod, setDailyPeriod] = useState("Tarda")
 
+const [sleepHabit, setSleepHabit] = useState("")
+
+const [screenTime, setScreenTime] = useState(4)
+
   const nextPopup = () => {
     setPopupStep(popupStep + 1)
   }
@@ -959,6 +963,139 @@ const [dailyPeriod, setDailyPeriod] = useState("Tarda")
       <button
         className="accept-button"
         onClick={() => setPopupStep(11)}
+      >
+        Continuar
+      </button>
+    </div>
+
+  </div>
+)}
+
+{/* POPUP 11 - HORA HABITUAL D'ANAR A DORMIR */}
+
+{popupStep === 11 && (
+  <div className="settings-panel">
+
+    <h2>😴 Quan acostumes a anar a dormir?</h2>
+
+    <p className="reminder-text">
+      Selecciona l'opció que s'ajusti millor als teus hàbits.
+    </p>
+
+    <div className="radio-group">
+
+      <div
+        className={`radio-option ${
+          sleepHabit === "Abans de les 22:00" ? "selected-radio" : ""
+        }`}
+        onClick={() => setSleepHabit("Abans de les 22:00")}
+      >
+        <div className="radio-circle"></div>
+        <span>Abans de les 22:00</span>
+      </div>
+
+      <div
+        className={`radio-option ${
+          sleepHabit === "Entre les 22:00 i les 00:00" ? "selected-radio" : ""
+        }`}
+        onClick={() => setSleepHabit("Entre les 22:00 i les 00:00")}
+      >
+        <div className="radio-circle"></div>
+        <span>Entre les 22:00 i les 00:00</span>
+      </div>
+
+      <div
+        className={`radio-option ${
+          sleepHabit === "Entre les 00:00 i les 02:00" ? "selected-radio" : ""
+        }`}
+        onClick={() => setSleepHabit("Entre les 00:00 i les 02:00")}
+      >
+        <div className="radio-circle"></div>
+        <span>Entre les 00:00 i les 02:00</span>
+      </div>
+
+      <div
+        className={`radio-option ${
+          sleepHabit === "Després de les 02:00" ? "selected-radio" : ""
+        }`}
+        onClick={() => setSleepHabit("Després de les 02:00")}
+      >
+        <div className="radio-circle"></div>
+        <span>Després de les 02:00</span>
+      </div>
+
+    </div>
+
+    {sleepHabit && (
+      <div
+        style={{
+          marginTop: "20px",
+          display: "flex",
+          justifyContent: "flex-end"
+        }}
+      >
+        <button
+          className="accept-button"
+          onClick={() => setPopupStep(12)}
+        >
+          Continuar
+        </button>
+      </div>
+    )}
+
+  </div>
+)}
+
+{/* POPUP 12 - TEMPS DE PANTALLA */}
+
+{popupStep === 12 && (
+  <div className="settings-panel">
+
+    <h2>📱 Temps de pantalla diari</h2>
+
+    <p className="reminder-text">
+      Quantes hores al dia utilitzes aproximadament el mòbil?
+    </p>
+
+    <div className="screen-time-display">
+
+      <span>{screenTime}</span>
+
+      <small>hores / dia</small>
+
+    </div>
+
+    <input
+      type="range"
+      min="0"
+      max="12"
+      step="1"
+      value={screenTime}
+      onChange={(e) => setScreenTime(Number(e.target.value))}
+      className="screen-slider"
+    />
+
+    <div
+      style={{
+        marginTop: "20px",
+        display: "flex",
+        justifyContent: "space-between"
+      }}
+    >
+      <span>0h</span>
+      <span>12h</span>
+    </div>
+
+    <div
+      style={{
+        marginTop: "25px",
+        display: "flex",
+        justifyContent: "flex-end"
+      }}
+    >
+      <button
+        className="accept-button"
+        onClick={() => setPopupStep(13)}
       >
         Continuar
       </button>
