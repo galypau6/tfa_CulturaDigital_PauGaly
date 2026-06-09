@@ -5,10 +5,15 @@ function App() {
 
   const [popupStep, setPopupStep] = useState(1)
 
-  const [showSettings, setShowSettings] = useState(false)
-  const [showReminder, setShowReminder] = useState(false)
-  const [limitedMode, setLimitedMode] = useState(false)
-  const [showEmotionalPopup, setShowEmotionalPopup] = useState(false)
+const [showSettings, setShowSettings] = useState(false)
+const [showReminder, setShowReminder] = useState(false)
+const [limitedMode, setLimitedMode] = useState(false)
+const [showEmotionalPopup, setShowEmotionalPopup] = useState(false)
+
+const [showCameraWarning, setShowCameraWarning] = useState(false)
+
+const [eyeCalibrationStarted, setEyeCalibrationStarted] = useState(false)
+const [eyeStep, setEyeStep] = useState(0)
 
   const nextPopup = () => {
     setPopupStep(popupStep + 1)
@@ -133,35 +138,35 @@ function App() {
       {/* POPUP 1 */}
 
       {popupStep === 1 && (
-        <div className="cookie-popup">
+  <div className="cookie-popup">
 
-          <h3>🍪 Millorem la teva experiència</h3>
+    <h3>🍪 Millorem la teva experiència</h3>
 
-          <p>
-            Aquesta plataforma utilitza cookies i dades contextuals
-            per optimitzar la navegació.
-          </p>
+    <p>
+      Aquesta plataforma utilitza cookies i dades contextuals
+      per optimitzar la navegació.
+    </p>
 
-          <div className="popup-buttons">
+    <div className="popup-buttons">
 
-            <button
-              className="config-button"
-              onClick={() => setShowSettings(true)}
-            >
-              Configurar
-            </button>
+      <button
+        className="config-button"
+        onClick={() => setShowSettings(true)}
+      >
+        Configurar
+      </button>
 
-            <button
-              className="accept-button"
-              onClick={nextPopup}
-            >
-              Acceptar-ho tot
-            </button>
+      <button
+        className="accept-button"
+        onClick={nextPopup}
+      >
+        Acceptar-ho tot
+      </button>
 
-          </div>
+    </div>
 
-        </div>
-      )}
+  </div>
+)}
 
       {/* SETTINGS */}
 
@@ -395,33 +400,200 @@ function App() {
 
       {/* POPUP 5 */}
 
-      {popupStep === 5 && (
-        <div className="cookie-popup fixed-popup">
+{popupStep === 5 && (
+  <div className="cookie-popup">
 
-          <h3>📷 Verificació emocional</h3>
+    <h3>📷 Accés a la càmera</h3>
 
-          <p>
-            L’anàlisi facial ens ajuda a optimitzar
-            l’experiència emocional dels estudiants.
+    <p>
+      L’accés a la càmera permet millorar les experiències
+      interactives avançades i la personalització visual.
+    </p>
+
+    <div className="popup-buttons">
+
+      <button
+        className="config-button"
+        onClick={() => setShowCameraWarning(true)}
+      >
+        Ara no
+      </button>
+
+      <button
+        className="accept-button"
+        onClick={nextPopup}
+      >
+        Permetre càmera
+      </button>
+
+    </div>
+
+  </div>
+)}
+
+{showCameraWarning && (
+  <div className="settings-panel">
+
+    <h2>⚠️ Funcionalitat limitada</h2>
+
+    <p className="reminder-text">
+      La calibració visual requereix accés a la càmera.
+      Sense aquest permís no podrem continuar amb
+      les experiències interactives avançades.
+    </p>
+
+    <div className="popup-buttons">
+
+      <button
+        className="config-button"
+        onClick={() => setShowCameraWarning(false)}
+      >
+        Tornar
+      </button>
+
+      <button
+        className="accept-button"
+        onClick={() => {
+          setShowCameraWarning(false)
+          nextPopup()
+        }}
+      >
+        Permetre càmera
+      </button>
+
+    </div>
+
+  </div>
+)}
+
+{/* POPUP 6 - CALIBRACIÓ VISUAL */}
+
+{popupStep === 6 && (
+  <>
+
+    <div className="calibration-overlay"></div>
+
+    {/* PUNT SUPERIOR ESQUERRA */}
+    <button
+      className={`calibration-point ${
+        eyeStep === 1 ? "point-active" : "point-inactive"
+      }`}
+      style={{
+        top: "80px",
+        left: "80px"
+      }}
+      onClick={() => {
+        if (eyeStep === 1) setEyeStep(2)
+      }}
+    />
+
+    {/* PUNT SUPERIOR DRETA */}
+    <button
+      className={`calibration-point ${
+        eyeStep === 2 ? "point-active" : "point-inactive"
+      }`}
+      style={{
+        top: "80px",
+        right: "80px"
+      }}
+      onClick={() => {
+        if (eyeStep === 2) setEyeStep(3)
+      }}
+    />
+
+    {/* PUNT INFERIOR ESQUERRA */}
+    <button
+      className={`calibration-point ${
+        eyeStep === 3 ? "point-active" : "point-inactive"
+      }`}
+      style={{
+        bottom: "80px",
+        left: "80px"
+      }}
+      onClick={() => {
+        if (eyeStep === 3) setEyeStep(4)
+      }}
+    />
+
+    {/* PUNT INFERIOR DRETA */}
+    <button
+      className={`calibration-point ${
+        eyeStep === 4 ? "point-active" : "point-inactive"
+      }`}
+      style={{
+        bottom: "80px",
+        right: "80px"
+      }}
+      onClick={() => {
+        if (eyeStep === 4) setEyeStep(5)
+      }}
+    />
+
+    <div className="settings-panel">
+
+      <h2>👁 Calibració visual</h2>
+
+      <p className="reminder-text">
+        Per millorar l'experiència interactiva necessitem
+        calibrar la teva mirada.
+      </p>
+
+      <p className="reminder-text">
+        Quan premis "Iniciar calibració",
+        fes clic en el punt que es posi de color taronja.
+      </p>
+
+      {!eyeCalibrationStarted && (
+        <button
+          className="settings-accept"
+          onClick={() => {
+            setEyeCalibrationStarted(true)
+            setEyeStep(1)
+          }}
+        >
+          Iniciar calibració
+        </button>
+      )}
+
+      {eyeCalibrationStarted && eyeStep < 5 && (
+        <p
+          style={{
+            marginTop: "20px",
+            fontWeight: "bold",
+            color: "orange"
+          }}
+        >
+          Progrés: {(eyeStep - 1) * 25}%
+        </p>
+      )}
+
+      {eyeStep === 5 && (
+        <div>
+
+          <p
+            style={{
+              marginTop: "20px",
+              color: "green",
+              fontWeight: "bold"
+            }}
+          >
+            ✓ Calibració completada
           </p>
 
-          <div className="popup-buttons">
-
-            <button
-              className="config-button"
-              onClick={() => setShowEmotionalPopup(true)}
-            >
-              Entenc les limitacions
-            </button>
-
-            <button className="accept-button">
-              Activar experiència completa
-            </button>
-
-          </div>
+          <button
+            className="settings-accept"
+            onClick={nextPopup}
+          >
+            Continuar
+          </button>
 
         </div>
       )}
+
+    </div>
+
+  </>
+)}
 
       {/* FINAL PANEL */}
 

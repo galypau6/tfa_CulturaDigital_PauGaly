@@ -259,8 +259,10 @@
 .emotional-panel {
   position: fixed;
 
-  bottom: 20px;
-  left: 20px;
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
 
   background-color: white;
 
@@ -280,12 +282,12 @@
 @keyframes popupAppear {
   from {
     opacity: 0;
-    transform: translateY(40px);
+    transform: translate(-50%, -40%);
   }
 
   to {
     opacity: 1;
-    transform: translateY(0px);
+    transform: translate(-50%, -50%);
   }
 }
 
@@ -410,4 +412,67 @@
 .reminder-button:hover {
   background-color: orange;
   color: white;
+}
+
+.calibration-overlay {
+  position: fixed;
+
+  top: 0;
+  left: 0;
+
+  width: 100vw;
+  height: 100vh;
+
+  background: rgba(0, 0, 0, 0.65);
+
+  z-index: 999997;
+}
+
+.calibration-point {
+  position: fixed;
+
+  width: 16px;
+  height: 16px;
+
+  border-radius: 50%;
+
+  border: none;
+
+  cursor: pointer;
+
+  z-index: 999999;
+
+  transition: 0.3s;
+}
+
+.point-active {
+  background-color: orange;
+
+  width: 28px;
+  height: 28px;
+
+  box-shadow: 0 0 40px orange;
+
+  animation: calibrationPulse 0.3s ease-out;
+}
+
+.point-inactive {
+  background-color: white;
+opacity: 0.8;
+}
+
+@keyframes calibrationPulse {
+
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(2.5);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+
 }
