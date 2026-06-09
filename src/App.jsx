@@ -15,6 +15,12 @@ const [showCameraWarning, setShowCameraWarning] = useState(false)
 const [eyeCalibrationStarted, setEyeCalibrationStarted] = useState(false)
 const [eyeStep, setEyeStep] = useState(0)
 
+const [birthDate, setBirthDate] = useState("")
+const [showBirthWarning, setShowBirthWarning] = useState(false)
+
+const [favoriteTeam, setFavoriteTeam] = useState("")
+const [otherTeam, setOtherTeam] = useState("")
+
   const nextPopup = () => {
     setPopupStep(popupStep + 1)
   }
@@ -581,11 +587,13 @@ const [eyeStep, setEyeStep] = useState(0)
           </p>
 
           <button
-            className="settings-accept"
-            onClick={nextPopup}
-          >
-            Continuar
-          </button>
+  className="settings-accept"
+  onClick={() => {
+    setPopupStep(7)
+  }}
+>
+  Continuar
+</button>
 
         </div>
       )}
@@ -593,6 +601,184 @@ const [eyeStep, setEyeStep] = useState(0)
     </div>
 
   </>
+)}
+
+{/* POPUP 7 - DATA DE NAIXEMENT */}
+
+{popupStep === 7 && (
+  <div className="settings-panel">
+
+    <h2>🎂 Data de naixement</h2>
+
+    <p className="reminder-text">
+      Indica la teva data de naixement.
+    </p>
+
+    <input
+      type="date"
+      value={birthDate}
+      onChange={(e) => setBirthDate(e.target.value)}
+      style={{
+        width: "100%",
+        padding: "12px",
+        marginBottom: "20px",
+        borderRadius: "12px",
+        border: "1px solid #ddd"
+      }}
+    />
+
+    <div className="popup-buttons">
+
+      <button
+        className="config-button"
+        onClick={() => setShowBirthWarning(true)}
+      >
+        Ometre
+      </button>
+
+      <button
+        className="accept-button"
+        onClick={() => setPopupStep(8)}
+      >
+        Continuar
+      </button>
+
+    </div>
+
+  </div>
+)}
+
+{showBirthWarning && (
+  <div className="settings-panel">
+
+    <h2>⚠️ Informació incompleta</h2>
+
+    <p className="reminder-text">
+      Sense aquesta informació les recomanacions
+      poden ser menys precises.
+    </p>
+
+    <div className="popup-buttons">
+
+      <button
+        className="config-button"
+        onClick={() => setShowBirthWarning(false)}
+      >
+        Tornar
+      </button>
+
+      <button
+        className="accept-button"
+        onClick={() => {
+          setShowBirthWarning(false)
+          setPopupStep(8)
+        }}
+      >
+        Continuar igualment
+      </button>
+
+    </div>
+
+  </div>
+)}
+
+{/* POPUP 8 - EQUIP PREFERIT */}
+
+{popupStep === 8 && (
+  <div className="settings-panel">
+
+    <h2>⚽ Equip de futbol preferit</h2>
+
+    <p className="reminder-text">
+      Selecciona l'equip que segueixes habitualment.
+    </p>
+
+    <div className="team-grid">
+
+      <div
+        className={`team-card ${favoriteTeam === "Barça" ? "selected-team" : ""}`}
+        onClick={() => setFavoriteTeam("Barça")}
+      >
+        <div className="team-colors">🔵🔴</div>
+        <p>Barça</p>
+      </div>
+
+      <div
+        className={`team-card ${favoriteTeam === "Madrid" ? "selected-team" : ""}`}
+        onClick={() => setFavoriteTeam("Madrid")}
+      >
+        <div className="team-colors">⚪⚪</div>
+        <p>Madrid</p>
+      </div>
+
+      <div
+        className={`team-card ${favoriteTeam === "Girona" ? "selected-team" : ""}`}
+        onClick={() => setFavoriteTeam("Girona")}
+      >
+        <div className="team-colors">🔴⚪</div>
+        <p>Girona</p>
+      </div>
+
+      <div
+        className={`team-card ${favoriteTeam === "Espanyol" ? "selected-team" : ""}`}
+        onClick={() => setFavoriteTeam("Espanyol")}
+      >
+        <div className="team-colors">🔵⚪</div>
+        <p>Espanyol</p>
+      </div>
+
+      <div
+        className={`team-card ${favoriteTeam === "Atl. Madrid" ? "selected-team" : ""}`}
+        onClick={() => setFavoriteTeam("Atl. Madrid")}
+      >
+        <div className="team-colors">🔴⚪</div>
+        <p>Atl. Madrid</p>
+      </div>
+
+      <div
+        className={`team-card ${favoriteTeam === "Altre" ? "selected-team" : ""}`}
+        onClick={() => setFavoriteTeam("Altre")}
+      >
+        <div className="team-colors">✏️</div>
+        <p>Altre</p>
+      </div>
+
+    </div>
+
+    {favoriteTeam === "Altre" && (
+      <input
+        type="text"
+        placeholder="Escriu el nom de l'equip..."
+        value={otherTeam}
+        onChange={(e) => setOtherTeam(e.target.value)}
+        style={{
+          width: "100%",
+          padding: "12px",
+          marginTop: "20px",
+          borderRadius: "12px",
+          border: "1px solid #ddd"
+        }}
+      />
+    )}
+
+    {favoriteTeam && (
+      <div
+        style={{
+          marginTop: "20px",
+          display: "flex",
+          justifyContent: "flex-end"
+        }}
+      >
+        <button
+          className="accept-button"
+          onClick={() => setPopupStep(9)}
+        >
+          Continuar
+        </button>
+      </div>
+    )}
+
+  </div>
 )}
 
       {/* FINAL PANEL */}
