@@ -21,6 +21,11 @@ const [showBirthWarning, setShowBirthWarning] = useState(false)
 const [favoriteTeam, setFavoriteTeam] = useState("")
 const [otherTeam, setOtherTeam] = useState("")
 
+const [musicStyle, setMusicStyle] = useState("")
+const [otherMusic, setOtherMusic] = useState("")
+
+const [dailyPeriod, setDailyPeriod] = useState("Tarda")
+
   const nextPopup = () => {
     setPopupStep(popupStep + 1)
   }
@@ -777,6 +782,187 @@ const [otherTeam, setOtherTeam] = useState("")
         </button>
       </div>
     )}
+
+  </div>
+)}
+
+{/* POPUP 9 - MÚSICA PREFERIDA */}
+
+{popupStep === 9 && (
+  <div className="settings-panel">
+
+    <h2>🎵 Estil musical preferit</h2>
+
+    <p className="reminder-text">
+      Selecciona l'estil musical que escoltes més sovint.
+    </p>
+
+    <div className="team-grid">
+
+      <div
+        className={`team-card ${musicStyle === "Pop" ? "selected-team" : ""}`}
+        onClick={() => setMusicStyle("Pop")}
+      >
+        <div className="team-colors">🎵</div>
+        <p>Pop</p>
+      </div>
+
+      <div
+        className={`team-card ${musicStyle === "Rock" ? "selected-team" : ""}`}
+        onClick={() => setMusicStyle("Rock")}
+      >
+        <div className="team-colors">🎸</div>
+        <p>Rock</p>
+      </div>
+
+      <div
+        className={`team-card ${musicStyle === "Electrònica" ? "selected-team" : ""}`}
+        onClick={() => setMusicStyle("Electrònica")}
+      >
+        <div className="team-colors">🎧</div>
+        <p>Electrònica</p>
+      </div>
+
+      <div
+        className={`team-card ${musicStyle === "Urbana" ? "selected-team" : ""}`}
+        onClick={() => setMusicStyle("Urbana")}
+      >
+        <div className="team-colors">🎤</div>
+        <p>Urbana</p>
+      </div>
+
+      <div
+        className={`team-card ${musicStyle === "Clàssica" ? "selected-team" : ""}`}
+        onClick={() => setMusicStyle("Clàssica")}
+      >
+        <div className="team-colors">🎻</div>
+        <p>Clàssica</p>
+      </div>
+
+      <div
+        className={`team-card ${musicStyle === "Altre" ? "selected-team" : ""}`}
+        onClick={() => setMusicStyle("Altre")}
+      >
+        <div className="team-colors">✏️</div>
+        <p>Altre</p>
+      </div>
+
+    </div>
+
+    {musicStyle === "Altre" && (
+      <input
+        type="text"
+        placeholder="Escriu l'estil musical..."
+        value={otherMusic}
+        onChange={(e) => setOtherMusic(e.target.value)}
+        style={{
+          width: "100%",
+          padding: "12px",
+          marginTop: "20px",
+          borderRadius: "12px",
+          border: "1px solid #ddd"
+        }}
+      />
+    )}
+
+    {musicStyle && (
+      <div
+        style={{
+          marginTop: "20px",
+          display: "flex",
+          justifyContent: "flex-end"
+        }}
+      >
+        <button
+          className="accept-button"
+          onClick={() => setPopupStep(10)}
+        >
+          Continuar
+        </button>
+      </div>
+    )}
+
+  </div>
+)}
+
+{/* POPUP 10 - HORARI HABITUAL */}
+
+{popupStep === 10 && (
+  <div className="settings-panel">
+
+    <h2>🌅 Horari habitual</h2>
+
+    <p className="reminder-text">
+      En quin moment del dia acostumes a estar més actiu?
+    </p>
+
+    <div
+      className={`period-scene ${
+        dailyPeriod === "Matí"
+          ? "scene-morning"
+          : dailyPeriod === "Tarda"
+          ? "scene-afternoon"
+          : "scene-night"
+      }`}
+    >
+
+      <div className="scene-icon">
+        {dailyPeriod === "Matí" && "🌅"}
+        {dailyPeriod === "Tarda" && "☀️"}
+        {dailyPeriod === "Nit" && "🌙"}
+      </div>
+
+    </div>
+
+    <input
+      type="range"
+      min="0"
+      max="2"
+      step="1"
+      value={
+        dailyPeriod === "Matí"
+          ? 0
+          : dailyPeriod === "Tarda"
+          ? 1
+          : 2
+      }
+      onChange={(e) => {
+        const value = Number(e.target.value)
+
+        if (value === 0) setDailyPeriod("Matí")
+        if (value === 1) setDailyPeriod("Tarda")
+        if (value === 2) setDailyPeriod("Nit")
+      }}
+      style={{
+        width: "100%",
+        marginTop: "10px"
+      }}
+    />
+
+    <p
+      style={{
+        textAlign: "center",
+        marginTop: "10px",
+        fontWeight: "bold"
+      }}
+    >
+      {dailyPeriod}
+    </p>
+
+    <div
+      style={{
+        marginTop: "20px",
+        display: "flex",
+        justifyContent: "flex-end"
+      }}
+    >
+      <button
+        className="accept-button"
+        onClick={() => setPopupStep(11)}
+      >
+        Continuar
+      </button>
+    </div>
 
   </div>
 )}
