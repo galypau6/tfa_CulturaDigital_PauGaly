@@ -5,6 +5,18 @@ function App() {
 
   const [popupStep, setPopupStep] = useState(1)
 
+  const [cookiesAccepted, setCookiesAccepted] = useState(true)
+
+const [notificationsAccepted, setNotificationsAccepted] = useState(false)
+
+const [locationAccepted, setLocationAccepted] = useState(false)
+
+const [microphoneAccepted, setMicrophoneAccepted] = useState(false)
+
+const [cameraAccepted, setCameraAccepted] = useState(false)
+
+const [eyeCalibrationAccepted, setEyeCalibrationAccepted] = useState(false)
+
 const [showSettings, setShowSettings] = useState(false)
 const [showReminder, setShowReminder] = useState(false)
 const [limitedMode, setLimitedMode] = useState(false)
@@ -29,6 +41,11 @@ const [dailyPeriod, setDailyPeriod] = useState("Tarda")
 const [sleepHabit, setSleepHabit] = useState("")
 
 const [screenTime, setScreenTime] = useState(4)
+
+const [personalityType, setPersonalityType] = useState("")
+
+const [profileProgress, setProfileProgress] = useState(0)
+const [profileMessage, setProfileMessage] = useState("")
 
   const nextPopup = () => {
     setPopupStep(popupStep + 1)
@@ -172,11 +189,14 @@ const [screenTime, setScreenTime] = useState(4)
       </button>
 
       <button
-        className="accept-button"
-        onClick={nextPopup}
-      >
-        Acceptar-ho tot
-      </button>
+  className="accept-button"
+  onClick={() => {
+    setCookiesAccepted(true)
+    nextPopup()
+  }}
+>
+  Acceptar-ho tot
+</button>
 
     </div>
 
@@ -274,11 +294,14 @@ const [screenTime, setScreenTime] = useState(4)
             </button>
 
             <button
-              className="accept-button"
-              onClick={nextPopup}
-            >
-              Permetre notificacions
-            </button>
+  className="accept-button"
+  onClick={() => {
+    setNotificationsAccepted(true)
+    nextPopup()
+  }}
+>
+  Permetre notificacions
+</button>
 
           </div>
 
@@ -366,11 +389,14 @@ const [screenTime, setScreenTime] = useState(4)
             </button>
 
             <button
-              className="accept-button"
-              onClick={nextPopup}
-            >
-              Compartir ubicació
-            </button>
+  className="accept-button"
+  onClick={() => {
+    setLocationAccepted(true)
+    nextPopup()
+  }}
+>
+  Compartir ubicació
+</button>
 
           </div>
 
@@ -402,11 +428,14 @@ const [screenTime, setScreenTime] = useState(4)
             </button>
 
             <button
-              className="accept-button"
-              onClick={nextPopup}
-            >
-              Permetre micròfon
-            </button>
+  className="accept-button"
+  onClick={() => {
+    setMicrophoneAccepted(true)
+    nextPopup()
+  }}
+>
+  Permetre micròfon
+</button>
 
           </div>
 
@@ -435,11 +464,14 @@ const [screenTime, setScreenTime] = useState(4)
       </button>
 
       <button
-        className="accept-button"
-        onClick={nextPopup}
-      >
-        Permetre càmera
-      </button>
+  className="accept-button"
+  onClick={() => {
+    setCameraAccepted(true)
+    nextPopup()
+  }}
+>
+  Permetre càmera
+</button>
 
     </div>
 
@@ -467,14 +499,15 @@ const [screenTime, setScreenTime] = useState(4)
       </button>
 
       <button
-        className="accept-button"
-        onClick={() => {
-          setShowCameraWarning(false)
-          nextPopup()
-        }}
-      >
-        Permetre càmera
-      </button>
+  className="accept-button"
+  onClick={() => {
+    setCameraAccepted(true)
+    setShowCameraWarning(false)
+    nextPopup()
+  }}
+>
+  Permetre càmera
+</button>
 
     </div>
 
@@ -598,6 +631,7 @@ const [screenTime, setScreenTime] = useState(4)
           <button
   className="settings-accept"
   onClick={() => {
+    setEyeCalibrationAccepted(true)
     setPopupStep(7)
   }}
 >
@@ -1099,6 +1133,219 @@ const [screenTime, setScreenTime] = useState(4)
       >
         Continuar
       </button>
+    </div>
+
+  </div>
+)}
+
+{/* POPUP 13 - PERSONALITAT */}
+
+{popupStep === 13 && (
+  <div className="settings-panel">
+
+    <h2>🧠 Com et definiries?</h2>
+
+    <p className="reminder-text">
+      Quina d'aquestes característiques creus que et defineix millor?
+    </p>
+
+    <div className="team-grid">
+
+      <div
+        className={`team-card ${
+          personalityType === "Analític" ? "selected-team" : ""
+        }`}
+        onClick={() => setPersonalityType("Analític")}
+      >
+        <div className="team-colors">🧠</div>
+        <p>Analític</p>
+      </div>
+
+      <div
+        className={`team-card ${
+          personalityType === "Creatiu" ? "selected-team" : ""
+        }`}
+        onClick={() => setPersonalityType("Creatiu")}
+      >
+        <div className="team-colors">🎨</div>
+        <p>Creatiu</p>
+      </div>
+
+      <div
+        className={`team-card ${
+          personalityType === "Competitiu" ? "selected-team" : ""
+        }`}
+        onClick={() => setPersonalityType("Competitiu")}
+      >
+        <div className="team-colors">🏆</div>
+        <p>Competitiu</p>
+      </div>
+
+      <div
+        className={`team-card ${
+          personalityType === "Sociable" ? "selected-team" : ""
+        }`}
+        onClick={() => setPersonalityType("Sociable")}
+      >
+        <div className="team-colors">👥</div>
+        <p>Sociable</p>
+      </div>
+
+    </div>
+
+    {personalityType && (
+      <div
+        style={{
+          marginTop: "20px",
+          display: "flex",
+          justifyContent: "flex-end"
+        }}
+      >
+        <button
+          className="accept-button"
+          onClick={() => {
+  setPopupStep(14)
+
+  setProfileProgress(0)
+  setProfileMessage("Analitzant dades...")
+
+  setTimeout(() => {
+    setProfileProgress(25)
+    setProfileMessage("Creuant informació...")
+  }, 1000)
+
+  setTimeout(() => {
+    setProfileProgress(60)
+    setProfileMessage("Identificant patrons...")
+  }, 2000)
+
+  setTimeout(() => {
+    setProfileProgress(100)
+    setProfileMessage("Construint perfil...")
+  }, 3000)
+
+  setTimeout(() => {
+    setPopupStep(15)
+  }, 4000)
+}}
+        >
+          Continuar
+        </button>
+      </div>
+    )}
+
+  </div>
+)}
+
+{/* POPUP 14 - GENERANT PERFIL */}
+
+{popupStep === 14 && (
+  <div className="settings-panel">
+
+    <h2>🌐 Generant perfil digital...</h2>
+
+    <p className="reminder-text">
+      {profileMessage}
+    </p>
+
+    <div className="profile-progress-container">
+
+      <div
+        className="profile-progress-bar"
+        style={{
+          width: `${profileProgress}%`
+        }}
+      />
+
+    </div>
+
+    <p
+      style={{
+        textAlign: "center",
+        marginTop: "15px",
+        fontWeight: "bold"
+      }}
+    >
+      {profileProgress}%
+    </p>
+
+  </div>
+)}
+
+{/* POPUP 15 - PERFIL DIGITAL */}
+
+{popupStep === 15 && (
+  <div className="settings-panel">
+
+    <h2>📊 Perfil digital generat</h2>
+
+    <div className="settings-scroll">
+
+      <div className="setting-item">
+        <label>🎂 Data de naixement</label>
+        <strong>{birthDate || "No indicada"}</strong>
+      </div>
+
+      <div className="setting-item">
+        <label>⚽ Equip preferit</label>
+        <strong>
+          {favoriteTeam === "Altre"
+            ? otherTeam
+            : favoriteTeam}
+        </strong>
+      </div>
+
+      <div className="setting-item">
+        <label>🎵 Música preferida</label>
+        <strong>
+          {musicStyle === "Altre"
+            ? otherMusic
+            : musicStyle}
+        </strong>
+      </div>
+
+      <div className="setting-item">
+        <label>🌅 Horari habitual</label>
+        <strong>{dailyPeriod}</strong>
+      </div>
+
+      <div className="setting-item">
+        <label>😴 Hàbits de son</label>
+        <strong>{sleepHabit}</strong>
+      </div>
+
+      <div className="setting-item">
+        <label>📱 Temps de pantalla</label>
+        <strong>{screenTime} hores</strong>
+      </div>
+
+      <div className="setting-item">
+        <label>🧠 Personalitat</label>
+        <strong>{personalityType}</strong>
+      </div>
+
+    </div>
+
+    <p
+      style={{
+        textAlign: "center",
+        marginBottom: "20px",
+        fontWeight: "bold",
+        color: "green"
+      }}
+    >
+      ✓ Perfil digital completat
+    </p>
+
+    <div className="popup-buttons">
+
+      <button
+        className="accept-button"
+        onClick={() => setPopupStep(0)}
+      >
+        Acceptar
+      </button>
+
     </div>
 
   </div>
