@@ -67,9 +67,19 @@ const [profileMessage, setProfileMessage] = useState("")
       <header className="header">
 
         <div className="logo-section">
-          <h1>CITM Experience</h1>
-          <p>Centre de la Imatge i la Tecnologia Multimèdia</p>
-        </div>
+
+  <img
+    src="/Lupc (2).png"
+    alt="UPC"
+    className="header-logo"
+  />
+
+  <div>
+    <h1>CITM Experience</h1>
+    <p>Centre de la Imatge i la Tecnologia Multimèdia</p>
+  </div>
+
+</div>
 
         <div className="header-actions">
 
@@ -121,51 +131,123 @@ const [profileMessage, setProfileMessage] = useState("")
 
       <main className="cards-container">
 
-        <div className="card">
+  <div className="card">
 
-          <div className="card-image">
-            <span>NOU</span>
-          </div>
+    <div
+  className="card-image"
+  style={{
+  backgroundImage: "url('/vestibul.jpg')",
+  backgroundSize: "cover",
+  backgroundPosition: "center"
+}}
+>
+  <span>NOU</span>
+</div>
 
-          <div className="card-content">
+    <div className="card-content">
 
-            <h3>Projectes destacats</h3>
+      <h3>ÚLTIMES PLACES DISPONIBLES</h3>
 
-            <p>
-              Descobreix contingut seleccionat segons la teva activitat.
-            </p>
+      <p>
+        Accedeix abans que ningú als continguts més rellevants de la plataforma.
+      </p>
 
-            <button>
-              Explorar
-            </button>
+      <button>
+        Activar alertes
+      </button>
 
-          </div>
+    </div>
 
-        </div>
+  </div>
 
-        <div className="card">
+  <div className="card">
 
-          <div className="card-image">
-            <span>URGENT</span>
-          </div>
+    <div
+  className="card-image"
+  style={{
+  backgroundImage: "url('/vr.jpg')",
+  backgroundSize: "cover",
+  backgroundPosition: "center"
+}}
+>
+  <span>PERSONALITZAT</span>
+</div>
 
-          <div className="card-content">
+    <div className="card-content">
 
-            <h3>Experiències immersives</h3>
+      <h3>EXPERIÈNCIA PREMIUM</h3>
 
-            <p>
-              Contingut optimitzat per millorar la interacció.
-            </p>
+      <p>
+        Millora la teva experiència activant les opcions de personalització.
+      </p>
 
-            <button>
-              Explorar
-            </button>
+      <button>
+        Configurar
+      </button>
 
-          </div>
+    </div>
 
-        </div>
+  </div>
 
-      </main>
+  <div className="card">
+
+    <div
+  className="card-image"
+  style={{
+  backgroundImage: "url('/alumnes.jpg')",
+  backgroundSize: "cover",
+  backgroundPosition: "center"
+}}
+>
+  <span>LIMITAT</span>
+</div>
+
+    <div className="card-content">
+
+      <h3>OFERTA LIMITADA</h3>
+
+      <p>
+        Només disponible durant aquesta sessió.
+      </p>
+
+      <button>
+        Descobrir
+      </button>
+
+    </div>
+
+  </div>
+
+  <div className="card">
+
+    <div
+  className="card-image"
+  style={{
+  backgroundImage: "url('/pantalla.png')",
+  backgroundSize: "cover",
+  backgroundPosition: "center"
+}}
+>
+  <span>RECOMANAT</span>
+</div>
+
+    <div className="card-content">
+
+      <h3>CONTINGUT RECOMANAT</h3>
+
+      <p>
+        Hem preparat una experiència adaptada als teus interessos.
+      </p>
+
+      <button>
+        Accedir
+      </button>
+
+    </div>
+
+  </div>
+
+</main>
 
       {/* POPUP 1 */}
 
@@ -1323,7 +1405,53 @@ const [profileMessage, setProfileMessage] = useState("")
         <label>🧠 Personalitat</label>
         <strong>{personalityType}</strong>
       </div>
+        <hr style={{ margin: "20px 0" }} />
 
+<h3 style={{ marginBottom: "15px" }}>
+  Permisos concedits
+</h3>
+
+<div className="setting-item">
+  <label>🍪 Seguiment de navegació</label>
+  <strong>{cookiesAccepted ? "✓" : "✗"}</strong>
+</div>
+
+<div className="setting-item">
+  <label>🔔 Notificacions</label>
+  <strong>{notificationsAccepted ? "✓" : "✗"}</strong>
+</div>
+
+<div className="setting-item">
+  <label>📍 Ubicació</label>
+  <strong>{locationAccepted ? "✓" : "✗"}</strong>
+</div>
+
+<div className="setting-item">
+  <label>🎤 Micròfon</label>
+  <strong>{microphoneAccepted ? "✓" : "✗"}</strong>
+</div>
+
+<div className="setting-item">
+  <label>📷 Càmera</label>
+  <strong>{cameraAccepted ? "✓" : "✗"}</strong>
+</div>
+
+<div className="setting-item">
+  <label>👁 Patró de mirada</label>
+  <strong>{eyeCalibrationAccepted ? "✓" : "✗"}</strong>
+</div>
+
+<p
+  style={{
+    marginTop: "20px",
+    textAlign: "center",
+    color: "#666",
+    lineHeight: "1.5"
+  }}
+>
+  Aquest perfil s'ha generat a partir de la informació
+  i dels permisos concedits durant l'experiència.
+</p>
     </div>
 
     <p
