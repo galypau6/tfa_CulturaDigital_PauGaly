@@ -820,7 +820,9 @@ function App() {
               className={`team-card ${favoriteTeam === "Barça" ? "selected-team" : ""}`}
               onClick={() => setFavoriteTeam("Barça")}
             >
-              <div className="team-colors">🔵🔴</div>
+              <div className="team-logo">
+                <img src="/fcb.png" alt="Barça" />
+              </div>
               <p>Barça</p>
             </div>
 
@@ -828,7 +830,9 @@ function App() {
               className={`team-card ${favoriteTeam === "Madrid" ? "selected-team" : ""}`}
               onClick={() => setFavoriteTeam("Madrid")}
             >
-              <div className="team-colors">⚪⚪</div>
+              <div className="team-logo">
+                <img src="/madrid.png" alt="Madrid" />
+              </div>
               <p>Madrid</p>
             </div>
 
@@ -836,7 +840,9 @@ function App() {
               className={`team-card ${favoriteTeam === "Girona" ? "selected-team" : ""}`}
               onClick={() => setFavoriteTeam("Girona")}
             >
-              <div className="team-colors">🔴⚪</div>
+              <div className="team-logo">
+                <img src="/girona.png" alt="Girona" />
+              </div>
               <p>Girona</p>
             </div>
 
@@ -844,7 +850,9 @@ function App() {
               className={`team-card ${favoriteTeam === "Espanyol" ? "selected-team" : ""}`}
               onClick={() => setFavoriteTeam("Espanyol")}
             >
-              <div className="team-colors">🔵⚪</div>
+              <div className="team-logo">
+                <img src="/rcde.png" alt="Espanyol" />
+              </div>
               <p>Espanyol</p>
             </div>
 
@@ -852,7 +860,9 @@ function App() {
               className={`team-card ${favoriteTeam === "Atl. Madrid" ? "selected-team" : ""}`}
               onClick={() => setFavoriteTeam("Atl. Madrid")}
             >
-              <div className="team-colors">🔴⚪</div>
+              <div className="team-logo">
+                <img src="/atletico.png" alt="Atlético" />
+              </div>
               <p>Atl. Madrid</p>
             </div>
 
@@ -860,7 +870,9 @@ function App() {
               className={`team-card ${favoriteTeam === "Altre" ? "selected-team" : ""}`}
               onClick={() => setFavoriteTeam("Altre")}
             >
-              <div className="team-colors">✏️</div>
+              <div className="team-logo">
+                <img src="/altres.png" alt="Altres" />
+              </div>
               <p>Altre</p>
             </div>
 
@@ -1014,10 +1026,10 @@ function App() {
 
           <div
             className={`period-scene ${dailyPeriod === "Matí"
-                ? "scene-morning"
-                : dailyPeriod === "Tarda"
-                  ? "scene-afternoon"
-                  : "scene-night"
+              ? "scene-morning"
+              : dailyPeriod === "Tarda"
+                ? "scene-afternoon"
+                : "scene-night"
               }`}
           >
 

@@ -534,6 +534,23 @@
   margin-bottom: 8px;
 }
 
+.team-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 70px;
+
+  margin-bottom: 10px;
+}
+
+.team-logo img {
+  width: 60px;
+  height: 60px;
+
+  object-fit: contain;
+}
+
 .selected-team {
   border: 2px solid orange;
 
