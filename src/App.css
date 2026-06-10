@@ -7,13 +7,13 @@
   position: relative;
 }
 
-/* LIMITED MODE */
-
 .limited-mode {
   opacity: 0.88;
 }
 
-/* TOP BANNER */
+/* -------------------------
+   TOP BANNER
+------------------------- */
 
 .top-banner {
   background-color: black;
@@ -46,7 +46,9 @@
   }
 }
 
-/* HEADER */
+/* -------------------------
+   HEADER
+------------------------- */
 
 .header {
   background-color: white;
@@ -115,7 +117,9 @@
   transform: scale(1.05);
 }
 
-/* HERO */
+/* -------------------------
+   HERO
+------------------------- */
 
 .hero {
   background:
@@ -192,7 +196,9 @@
   cursor: pointer;
 }
 
-/* CARDS */
+/* -------------------------
+   CARDS
+------------------------- */
 
 .cards-container {
   display: flex;
@@ -273,11 +279,12 @@
   cursor: pointer;
 }
 
-/* POPUPS */
+/* -------------------------
+   POPUPS
+------------------------- */
 
 .cookie-popup,
-.settings-panel,
-.emotional-panel {
+.settings-panel {
   position: fixed;
 
   top: 50%;
@@ -313,8 +320,7 @@
 }
 
 .cookie-popup h3,
-.settings-panel h2,
-.emotional-panel h2 {
+.settings-panel h2 {
   margin-bottom: 15px;
 }
 
@@ -368,7 +374,9 @@
   transform: scale(1.05);
 }
 
-/* SETTINGS */
+/* -------------------------
+   SETTINGS
+------------------------- */
 
 .settings-scroll {
   max-height: 300px;
@@ -435,6 +443,10 @@
   color: white;
 }
 
+/* -------------------------
+   CALIBRACIÓ VISUAL
+------------------------- */
+
 .calibration-overlay {
   position: fixed;
 
@@ -498,6 +510,10 @@
 
 }
 
+/* -------------------------
+   EQUIPS
+------------------------- */
+
 .team-grid {
   display: grid;
 
@@ -557,6 +573,10 @@
   background: rgba(255, 165, 0, 0.15);
 }
 
+/* -------------------------
+   HORARI HABITUAL
+------------------------- */
+
 .period-scene {
   height: 180px;
 
@@ -602,6 +622,10 @@
 
   transition: 0.5s;
 }
+
+/* -------------------------
+   OPCIONS DE SELECCIÓ
+------------------------- */
 
 .radio-group {
   display: flex;
@@ -656,6 +680,10 @@
   border-color: orange;
 }
 
+/* -------------------------
+   TEMPS DE PANTALLA
+------------------------- */
+
 .screen-time-display {
   display: flex;
   flex-direction: column;
@@ -686,6 +714,10 @@
 
   cursor: pointer;
 }
+
+/* -------------------------
+   PERFIL DIGITAL
+------------------------- */
 
 .profile-progress-container {
   width: 100%;

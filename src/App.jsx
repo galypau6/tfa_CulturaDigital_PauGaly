@@ -3,33 +3,45 @@ import { useState } from 'react'
 
 function App() {
 
+  // -------------------------
+  // CONTROL GENERAL
+  // -------------------------
+
   const [popupStep, setPopupStep] = useState(1)
+  const [limitedMode, setLimitedMode] = useState(false)
+
+  // -------------------------
+  // PERMISOS
+  // -------------------------
 
   const [cookiesAccepted, setCookiesAccepted] = useState(true)
-
   const [notificationsAccepted, setNotificationsAccepted] = useState(false)
-
   const [locationAccepted, setLocationAccepted] = useState(false)
-
   const [microphoneAccepted, setMicrophoneAccepted] = useState(false)
-
   const [cameraAccepted, setCameraAccepted] = useState(false)
-
   const [eyeCalibrationAccepted, setEyeCalibrationAccepted] = useState(false)
+
+  // -------------------------
+  // POPUPS AUXILIARS
+  // -------------------------
 
   const [showSettings, setShowSettings] = useState(false)
   const [showReminder, setShowReminder] = useState(false)
-  const [limitedMode, setLimitedMode] = useState(false)
-  const [showEmotionalPopup, setShowEmotionalPopup] = useState(false)
-
   const [showCameraWarning, setShowCameraWarning] = useState(false)
+  const [showBirthWarning, setShowBirthWarning] = useState(false)
+
+  // -------------------------
+  // CALIBRACIÓ VISUAL
+  // -------------------------
 
   const [eyeCalibrationStarted, setEyeCalibrationStarted] = useState(false)
   const [eyeStep, setEyeStep] = useState(0)
 
-  const [birthDate, setBirthDate] = useState("")
-  const [showBirthWarning, setShowBirthWarning] = useState(false)
+  // -------------------------
+  // DADES DE L'USUARI
+  // -------------------------
 
+  const [birthDate, setBirthDate] = useState("")
   const [favoriteTeam, setFavoriteTeam] = useState("")
   const [otherTeam, setOtherTeam] = useState("")
 
@@ -37,15 +49,21 @@ function App() {
   const [otherMusic, setOtherMusic] = useState("")
 
   const [dailyPeriod, setDailyPeriod] = useState("Tarda")
-
   const [sleepHabit, setSleepHabit] = useState("")
-
   const [screenTime, setScreenTime] = useState(4)
 
   const [personalityType, setPersonalityType] = useState("")
 
+  // -------------------------
+  // PERFIL DIGITAL
+  // -------------------------
+
   const [profileProgress, setProfileProgress] = useState(0)
   const [profileMessage, setProfileMessage] = useState("")
+
+  // -------------------------
+  // FUNCIONS
+  // -------------------------
 
   const nextPopup = () => {
     setPopupStep(popupStep + 1)
@@ -1471,33 +1489,6 @@ function App() {
               onClick={() => setPopupStep(0)}
             >
               Acceptar
-            </button>
-
-          </div>
-
-        </div>
-      )}
-
-      {/* FINAL PANEL */}
-
-      {showEmotionalPopup && (
-        <div className="settings-panel emotional-panel">
-
-          <h2>Algunes funcionalitats quedaran limitades</h2>
-
-          <p className="reminder-text">
-            Sense verificació emocional, el sistema no podrà
-            adaptar contingut immersiu segons el teu estat contextual.
-          </p>
-
-          <div className="popup-buttons">
-
-            <button className="config-button">
-              Continuar limitat
-            </button>
-
-            <button className="accept-button">
-              Activar verificació emocional
             </button>
 
           </div>
